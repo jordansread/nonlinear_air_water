@@ -1,5 +1,6 @@
 #random forest figures
-
+library(dplyr)
+library(reshape2)
 #best model identified elsewhere and implemented here
 #treaty
 mydata<-read.csv("data/final.yoy.2014.csv", header=TRUE, sep=",")
