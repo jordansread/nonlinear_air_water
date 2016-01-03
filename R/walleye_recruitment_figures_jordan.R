@@ -7,7 +7,7 @@ mydata<-read.csv("data/final.yoy.2014.csv", header=TRUE, sep=",")
 summary(mydata)
 mydata$WBIC<-factor(mydata$WBIC)
 
-#additional data from statewide database
+#additional data from statewide database GH's initial files
 mydata1<-read.csv("data/additional_yoy_fixed.csv", header=TRUE, sep=",")
 summary(mydata1)
 mydata1$WBIC<-factor(mydata1$WBIC)
