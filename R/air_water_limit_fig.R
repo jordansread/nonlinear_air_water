@@ -13,8 +13,8 @@ layout(matrix(c(1,2), nrow = 2))
 par(mai=c(.3,.5,.1,.1))
 plot(d.2$air, d.2$water, pch=20, col='grey60',
      ylim=c(0, 30),xlim=c(-10,40), ylab='Water temperature (°C)', xlab='Air temperature (°C)')
-curve = loess.smooth(d.2$air, d.2$water, span = 2/3, degree=2, family="gaussian")
-lines(curve, lwd=3)
+curve = loess.smooth(d.2$air, d.2$water, span = 5/6, degree=2, family="gaussian") %>% data.frame
+lines(curve %>% filter(x>0), lwd=3)
 
 # library(dataRetrieval)
 site = '07144790'
@@ -40,5 +40,5 @@ d.2 <- data.joined %>% mutate(week=lubridate::week(Date), year=lubridate::year(D
 
 plot(d.2$air, d.2$water, pch=20, col='grey60',
      ylim=c(0, 30),xlim=c(-10,40), ylab='Water temperature (°C)', xlab='Air temperature (°C)')
-curve = loess.smooth(d.2$air, d.2$water, span = 2/3, degree=2, family="gaussian")
-lines(curve, lwd=3)
+curve = loess.smooth(d.2$air, d.2$water, span = 5/6, degree=2, family="gaussian") %>% data.frame
+lines(curve %>% filter(x>0), lwd=3)
