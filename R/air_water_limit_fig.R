@@ -10,13 +10,15 @@ d.2 <- data.joined %>% mutate(week=lubridate::week(Date), year=lubridate::year(D
   group_by(week, year) %>% summarize(air=mean(air), water=mean(wtr))
 
 layout(matrix(c(1,2), nrow = 2))
-par(mai=c(.1,.1,.1,.1), omi=c(1,1, 0,0), mgp=c(2,.5,0))
+par(mai=c(.1,.1,.1,.1), omi=c(.65,0.55, 0,0), mgp=c(2,.3,0))
 plot(d.2$air, d.2$water, pch=20, col='grey60',
      ylim=c(0, 30),xlim=c(-10,40), axes=F)
+
+d.2 <- d.2 %>% filter(air < 25)
 curve = loess.smooth(d.2$air, d.2$water, span = 5/6, degree=2, family="gaussian") %>% data.frame
 lines(curve %>% filter(x>0), lwd=3)
-axis(1, labels=NA)
-axis(2) 
+axis(1, labels=NA, tck=0.02)
+axis(2, las=1, tck=0.02)
 mtext(side=2, 'Water temperature (°C)', line = 2)
 box()
 # library(dataRetrieval)
@@ -42,8 +44,12 @@ d.2 <- data.joined %>% mutate(week=lubridate::week(Date), year=lubridate::year(D
   group_by(week, year) %>% summarize(air=mean(bufferedPoint), water=mean(Wtemp_Max))
 
 plot(d.2$air, d.2$water, pch=20, col='grey60',
-     ylim=c(0, 30),xlim=c(-10,40), ylab='Water temperature (°C)', xlab='Air temperature (°C)')
+     ylim=c(0, 30),xlim=c(-10,40), ylab='Water temperature (°C)', xlab='Air temperature (°C)', axes=F)
 curve = loess.smooth(d.2$air, d.2$water, span = 5/6, degree=2, family="gaussian") %>% data.frame
 lines(curve %>% filter(x>0), lwd=3)
+axis(1, tck=0.02)
+axis(2, las=1, tck=0.02)
 mtext(side=2, 'Water temperature (°C)', line = 2)
 mtext(side=1, 'Air temperature (°C)', line = 2)
+
+box()
