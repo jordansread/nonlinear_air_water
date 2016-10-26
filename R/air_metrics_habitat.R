@@ -88,7 +88,7 @@ if (!dir.exists(file.path(tempdir(),'hab_metrics'))){
   dir.create(path=file.path(tempdir(),'hab_metrics'))
 }
 
-models = 'NLDAS'#c('GFDL', 'IPSL', 'MRI', 'MIROC5', 'CNRM', 'ACCESS')
+models = c('GFDL', 'IPSL', 'MRI', 'MIROC5', 'CNRM', 'ACCESS')
 for (model in models){
   
   driver.index <- read.table(sprintf('http://cida-test.er.usgs.gov/mda.lakes/drivers_GLM_%s/driver_index.tsv',model), sep = '\t', header=TRUE, stringsAsFactors = FALSE)
